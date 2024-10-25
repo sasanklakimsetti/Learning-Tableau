@@ -1,0 +1,23 @@
+control chart is a type of line chart 
+
+Steps:
+1. Create a continuous line chart to show monthly profit.
+2. Create Parameter "Standard deviation" with allowable values 1,2,3
+3. Create calculated fields “Lower Bound”
+WINDOW_AVG(SUM([Profit]))- (WINDOW_STDEV(SUM([Profit]))* [Standard Deviation])
+
+4. Create calculated field “Upper Bound”
+WINDOW_AVG(SUM([Profit]))+ (WINDOW_STDEV(SUM([Profit]))* [Standard Deviation])
+
+5. Create calculated field “Outlier”
+SUM([Profit])<[Lower Bound] OR SUM([Profit])>[Upper bound]
+
+
+
+We chose standard deviation as a parameter so that we can show the varying of number of outliers.
+Drop Measure Values to the side of Sum(Sales) and drop all except Lower Bound and Upper Bound.
+Make the chart as dual axis by clicking on the dual axis in the dropdown of Measure Values
+Synchronize the axis by right clicking on the right vertical axis
+Hide the values axis by right clicking the axis and click on 'Hide axis'
+Drop outliers into color
+Number of outliers depends on the value of standard deviation.
